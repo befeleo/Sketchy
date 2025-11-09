@@ -8,6 +8,12 @@ canvas.forEach(e => {
         e.style.backgroundColor = 'pink'
     })
 })
+const randomColor = () => {
+    const r = Math.floor(Math.random() * 256)
+    const g = Math.floor(Math.random() * 256)
+    const b = Math.floor(Math.random() * 256)
+    return `rgb(${r}, ${g}, ${b})`
+}
 
 // Size 
 let size
@@ -23,9 +29,10 @@ btn.addEventListener('click', () => {
         newCanvas.style.height = `${100 / size}%`
 
         newCanvas.addEventListener('mouseover', () => {
-            newCanvas.style.backgroundColor = 'pink'
+            newCanvas.style.backgroundColor = randomColor()
         })
 
         parent.appendChild(newCanvas)
     }
 })
+
