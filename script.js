@@ -1,15 +1,23 @@
-cell = document.querySelectorAll(".cell")
 sketch = document.querySelector('.sketch')
+cell = document.querySelectorAll(".cell")
 sizeDisplay = document.querySelector('.size-display')
 inputSize = document.getElementById('size')
 
 
-// Hover
-cell.forEach(e => {
-    e.addEventListener(('mouseover'), () => {
-        e.style.backgroundColor = 'pink'
+// Default size
+const defaultSize = 16
+
+for (let i = 1; i <= defaultSize ** 2; i++) {
+    const defaults = document.createElement('div')
+    defaults.classList.add('cell')
+    defaults.style.width = `${100 / defaultSize}%`
+    defaults.style.height = `${100 / defaultSize}%`
+    sketch.appendChild(defaults)
+
+    defaults.addEventListener('mouseover', () => {
+        defaults.style.backgroundColor = 'pink'
     })
-})
+}
 
 // Random Color
 const randomColor = () => {
@@ -19,7 +27,7 @@ const randomColor = () => {
     return `rgb(${r}, ${g}, ${b})`
 }
 
-// Size 
+// Modify Size 
 
 inputSize.addEventListener('input', () => {
     sizeDisplay.textContent = `${inputSize.value}X${inputSize.value}`
@@ -38,5 +46,3 @@ inputSize.addEventListener('input', () => {
         sketch.appendChild(newCell)
     }
 })
-
-
