@@ -213,7 +213,7 @@ button {
   height: 55px;
   cursor: pointer;
 }
-.size {
+.size-display {
   /* border: 1px solid; */
   margin: -20px 0;
   font-size: 30px;
