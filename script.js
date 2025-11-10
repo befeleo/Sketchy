@@ -29,10 +29,18 @@ btn.addEventListener('click', () => {
         newCanvas.style.height = `${100 / size}%`
 
         newCanvas.addEventListener('mouseover', () => {
-            newCanvas.style.backgroundColor = randomColor()
+            newCanvas.style.backgroundColor = '#ffc0cb'
         })
 
         parent.appendChild(newCanvas)
     }
 })
 
+
+input = document.querySelector('#size')
+size = document.querySelector('.size')
+
+input.addEventListener('input', () => {
+    size.textContent = input.value
+
+})
