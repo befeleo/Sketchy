@@ -1,6 +1,8 @@
 const sketch = document.querySelector('.sketch')
 const inputSize = document.getElementById('size')
-const sizeDisplay = document.querySelector('.size-display')
+const sizeDisplay = document.querySelector('.size-displayColor')
+const colorDisplay = document.querySelector('.color-displayColor')
+// colorDisplay.textContent = 'black'
 
 // Buttons
 const colorPaletteBtn = document.getElementById('color-palette')
@@ -50,8 +52,10 @@ const getColorPalette = (color) => {
     const cells = document.querySelectorAll('.cell')
     cells.forEach(cell => {
         cell.addEventListener('mouseover', () => {
-            if (colorPaletteEnabled)
+            if (colorPaletteEnabled) {
                 cell.style.backgroundColor = `${color}`
+                displayColor(color)
+            }
         })
     })
     randomColorEnabled = false
@@ -60,21 +64,35 @@ const getColorPalette = (color) => {
 
 // Add random Color
 const randomColorGenerate = () => {
-    const r = Math.floor(Math.random() * 256)
-    const g = Math.floor(Math.random() * 256)
-    const b = Math.floor(Math.random() * 256)
-    const randomColor = `rgb(${r}, ${g}, ${b})`
-    return randomColor
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const hex = "#" + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')
+    return hex
 }
+
+const displayColor = (color) => {
+    colorDisplay.innerHTML = ''
+    const p = document.createElement('p')
+    p.textContent = color
+    colorDisplay.appendChild(p)
+}
+
 const getRandomColor = () => {
+    colorDisplay.innerHTML = ''
+    const p = document.createElement('p')
     randomColorEnabled = !randomColorEnabled
     const cells = document.querySelectorAll('.cell')
     cells.forEach(cell => {
         cell.addEventListener('mouseover', () => {
-            if (randomColorEnabled)
-                cell.style.backgroundColor = randomColorGenerate()
+            if (randomColorEnabled) {
+                const randomColor = randomColorGenerate()
+                cell.style.backgroundColor = randomColor
+                displayColor(randomColor)
+            }
         })
     })
+    colorDisplay.appendChild(p)
     colorPaletteEnabled = false
     eraseEnabled = false
 }
@@ -88,12 +106,14 @@ const displayGrid = () => {
 
 // Clear
 const clearGrid = () => {
+    colorDisplay.innerHTML = ''
     const cells = document.querySelectorAll('.cell')
     cells.forEach(cell => cell.style.backgroundColor = '#fff')
 }
 
 // Erase
 const eraseGrid = () => {
+    colorDisplay.innerHTML = ''
     eraseEnabled = !eraseEnabled
     const cells = document.querySelectorAll('.cell')
     cells.forEach(cell => {
@@ -110,7 +130,9 @@ const eraseGrid = () => {
 colors.forEach(color => {
     color.addEventListener('click', () => {
         colorPaletteEnabled = true
-        getColorPalette(color.id)
+        const colorId = `#${color.id}`
+        console.log(colorId)
+        getColorPalette(colorId)
     })
 })
 randomColorBtn.addEventListener('click', () => getRandomColor())
@@ -118,3 +140,4 @@ eraseBtn.addEventListener('click', () => eraseGrid())
 gridBtn.addEventListener('click', () => displayGrid())
 clearBtn.addEventListener('click', () => clearGrid())
 inputSize.addEventListener('input', () => createCell())
+colorPaletteBtn.addEventListener('click', () => colorInput())
