@@ -10,6 +10,7 @@ const randomColorBtn = document.getElementById('random-color')
 const eraseBtn = document.getElementById('erase')
 const gridBtn = document.getElementById('grid')
 const clearBtn = document.getElementById('clear')
+const saveBtn = document.getElementById('save')
 
 // Color
 const colors = document.querySelectorAll('.color')
@@ -156,6 +157,18 @@ const eraseGrid = () => {
     randomColorEnabled = false
 }
 
+// Save
+const save = () => {
+    html2canvas(sketch).then(canvas => {
+        const link = document.createElement('a')
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
+        link.download = `sketch_${timestamp}.png`
+        link.href = canvas.toDataURL('image/png')
+        link.click()
+    })
+}
+
+
 // Event listeners
 colors.forEach(color => {
     color.addEventListener('click', () => {
@@ -171,5 +184,6 @@ randomColorBtn.addEventListener('click', () => getRandomColor())
 eraseBtn.addEventListener('click', () => eraseGrid())
 gridBtn.addEventListener('click', () => displayGrid())
 clearBtn.addEventListener('click', () => clearGrid())
+saveBtn.addEventListener('click', () => save())
 inputSize.addEventListener('input', () => createCell())
 
