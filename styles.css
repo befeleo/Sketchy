@@ -13,7 +13,6 @@ body {
   height: 100vh;
   font-family: "Pixelify Sans", sans-serif;
 }
-
 .container {
   background-color: #fff;
   display: grid;
@@ -56,6 +55,13 @@ h1 {
   text-align: center;
   line-height: 40px;
 }
+.color-display {
+  font-size: 40px;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
 
 .colors {
   display: grid;
@@ -70,55 +76,54 @@ h1 {
   cursor: pointer;
 }
 
-#black {
+.color.black {
   background: #000;
 }
-#white {
+.color.white {
   background: #fff;
 }
-#red {
+.color.red {
   background: #ff0000;
 }
-#orange {
+.color.orange {
   background: #ffa500;
 }
-#yellow {
+.color.yellow {
   background: #ffff00;
 }
-#lime {
+.color.lime {
   background: #00ff00;
 }
-#green {
+.color.green {
   background: #008000;
 }
-#cyan {
+.color.cyan {
   background: #00ffff;
 }
-#blue {
+.color.blue {
   background: #0000ff;
 }
-#navy {
+.color.navy {
   background: #000080;
 }
-#purple {
+.color.purple {
   background: #800080;
 }
-#pink {
-  background: #ff69b4;
+.color.pink {
+  background: #ffc0cb;
 }
-#brown {
+.color.brown {
   background: #a52a2a;
 }
-#gray {
+.color.gray {
   background: #808080;
 }
-#silver {
+.color.silver {
   background: #c0c0c0;
 }
-#gold {
+.color.gold {
   background: #ffd700;
 }
-
 .controls {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
@@ -135,6 +140,10 @@ button {
   width: 60px;
   height: 55px;
   cursor: pointer;
+}
+
+.button {
+  /* background-color: #000;   */
 }
 .size-display {
   margin: -20px 0;
