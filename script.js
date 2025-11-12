@@ -2,7 +2,6 @@ const sketch = document.querySelector('.sketch')
 const inputSize = document.getElementById('size')
 const sizeDisplay = document.querySelector('.size-display')
 const colorDisplay = document.querySelector('.color-display')
-// colorDisplay.textContent = 'black'
 
 // Buttons
 const colorPaletteBtn = document.getElementById('color-palette')
